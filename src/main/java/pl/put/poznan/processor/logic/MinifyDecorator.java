@@ -12,11 +12,17 @@ public class MinifyDecorator extends JSONProcessorDecorator {
     @Override
     public String processJSON(String json) {
         String processedJson = wrappee.processJSON(json);
-        try {
-            Object jsonObj = mapper.readValue(processedJson, Object.class);
-            return mapper.writeValueAsString(jsonObj);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException("Error minifying JSON: " + e.getMessage(), e);
+        StringBuilder minifiedJson = new StringBuilder();
+        boolean inQuotes = false;
+        for (char c : processedJson.toCharArray()) {
+            if (c == '\"') {
+                inQuotes = !inQuotes;
+            }
+            if (!inQuotes && Character.isWhitespace(c)) {
+                continue;
+            }
+            minifiedJson.append(c);
         }
+        return minifiedJson.toString();
     }
 }

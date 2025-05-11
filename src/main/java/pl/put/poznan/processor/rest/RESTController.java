@@ -22,4 +22,13 @@ public class RESTController {
         return processor.processJSON(json);
     }
 
+    // Prettify JSON
+    @PostMapping(value = "/prettify", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String prettify(@RequestBody String json) {
+        logger.debug("Prettifying JSON: {}", json);
+        JSONProcessor processor = new PrettifyDecorator(new BasicJSONProcessor());
+        return processor.processJSON(json);
+    }
+
+
 }
