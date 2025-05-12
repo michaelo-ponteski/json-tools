@@ -2,13 +2,13 @@ package pl.put.poznan.processor.logic;
 
 
 public abstract class JSONProcessorDecorator implements JSONProcessor {
-    protected JSONProcessor wrappee;
-    public JSONProcessorDecorator(JSONProcessor wrappee) {
-        this.wrappee = wrappee;
+    protected JSONProcessor wrapper;
+    public JSONProcessorDecorator(JSONProcessor wrapper) {
+        this.wrapper = wrapper;
     }
 
     @Override
     public String processJSON(String json) {
-        return wrappee.processJSON(json);
+        return wrapper.processJSON(json);
     }
 }

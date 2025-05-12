@@ -11,7 +11,7 @@ public class MinifyDecorator extends JSONProcessorDecorator {
 
     @Override
     public String processJSON(String json) {
-        String processedJson = wrappee.processJSON(json);
+        String processedJson = wrapper.processJSON(json);
         StringBuilder minifiedJson = new StringBuilder();
         boolean inQuotes = false;
         for (char c : processedJson.toCharArray()) {

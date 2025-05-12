@@ -12,7 +12,7 @@ public class PrettifyDecorator extends JSONProcessorDecorator {
 
     @Override
     public String processJSON(String json) {
-        String processedJson = wrappee.processJSON(json);
+        String processedJson = wrapper.processJSON(json);
         try {
             Object jsonObject = mapper.readValue(processedJson, Object.class);
             return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);

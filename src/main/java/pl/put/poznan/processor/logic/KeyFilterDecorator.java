@@ -11,14 +11,14 @@ public class KeyFilterDecorator extends JSONProcessorDecorator {
     private final ObjectMapper mapper = new ObjectMapper();
     private final List<String> keysToKeep;
 
-    public KeyFilterDecorator(JSONProcessor wrappee, List<String> keysToKeep) {
-        super(wrappee);
+    public KeyFilterDecorator(JSONProcessor wrapper, List<String> keysToKeep) {
+        super(wrapper);
         this.keysToKeep = keysToKeep;
     }
 
     @Override
     public String processJSON(String json) {
-        String processedJson = wrappee.processJSON(json);
+        String processedJson = wrapper.processJSON(json);
         try {
             JsonNode rootNode = mapper.readTree(processedJson);
             filterKeys(rootNode);
