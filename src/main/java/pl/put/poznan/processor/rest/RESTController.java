@@ -30,5 +30,12 @@ public class RESTController {
         return processor.processJSON(json);
     }
 
-
+    // Filter JSON by keys
+    @PostMapping(value = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String filter(@RequestBody String json, @RequestParam List<String> keys) {
+        logger.debug("Filtering JSON: {}", json);
+        logger.debug("Keys to keep: {}", keys);
+        JSONProcessor processor = new KeyFilterDecorator(new BasicJSONProcessor(), keys);
+        return processor.processJSON(json);
+    }
 }
