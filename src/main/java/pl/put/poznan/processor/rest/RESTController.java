@@ -38,4 +38,13 @@ public class RESTController {
         JSONProcessor processor = new KeyFilterDecorator(new BasicJSONProcessor(), keys);
         return processor.processJSON(json);
     }
+
+    // Exclude keys from JSON
+    @PostMapping(value = "/exclude", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String exclude(@RequestBody String json, @RequestParam List<String> keys) {
+        logger.debug("Excluding keys from JSON: {}", json);
+        logger.debug("Keys to exclude: {}", keys);
+        JSONProcessor processor = new KeyExcludeDecorator(new BasicJSONProcessor(), keys);
+        return processor.processJSON(json);
+    }
 }
