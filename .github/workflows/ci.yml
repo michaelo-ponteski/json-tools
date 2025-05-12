@@ -10,6 +10,12 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-          cache: maven
+      - name: Cache Maven dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
       - name: Validate, build and run tests
         run: mvn --batch-mode --update-snapshots verify
