@@ -47,4 +47,12 @@ public class RESTController {
         JSONProcessor processor = new KeyExcludeDecorator(new BasicJSONProcessor(), keys);
         return processor.processJSON(json);
     }
+
+    // Compare two JSONs
+    @PostMapping(value = "/compare", produces = MediaType.TEXT_PLAIN_VALUE)
+    public String compare(@RequestParam String json1, @RequestParam String json2) {
+        logger.debug("Comparing JSONs: {} and {}", json1, json2);
+        JSONProcessor processor = new TextCompareDecorator(new BasicJSONProcessor(), json2);
+        return processor.processJSON(json1);
+    }
 }
