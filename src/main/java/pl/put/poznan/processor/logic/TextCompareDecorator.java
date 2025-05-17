@@ -5,20 +5,50 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * A decorator for comparing two JSON strings.
+ * Compares the input JSON with another JSON and identifies differences.
+ */
 public class TextCompareDecorator extends JSONProcessorDecorator {
+    /**
+     * ObjectMapper instance for JSON parsing and writing.
+     */
     private final ObjectMapper mapper = new ObjectMapper();
+
+    /**
+     * The JSON string to compare against.
+     */
     private final String jsonToCompare;
 
-    public TextCompareDecorator(JSONProcessor processor, String jsonToCompare) {
-        super(processor);
+    /**
+     * Constructs a TextCompareDecorator with the specified JSONProcessor and JSON to compare.
+     *
+     * @param wrapper the JSONProcessor to wrap
+     * @param jsonToCompare the JSON string to compare against
+     */
+    public TextCompareDecorator(JSONProcessor wrapper, String jsonToCompare) {
+        super(wrapper);
         this.jsonToCompare = jsonToCompare;
     }
 
+    /**
+     * Processes the JSON string by comparing it with another JSON.
+     *
+     * @param json the JSON string to process
+     * @return a string describing the differences between the two JSONs
+     */
     @Override
     public String processJSON(String json) {
         return compareJSON(json, jsonToCompare);
     }
 
+    /**
+     * Compares two JSON strings and identifies differences.
+     *
+     * @param text1 the first JSON string
+     * @param text2 the second JSON string
+     * @return a string describing the differences
+     */
     private String compareJSON(String text1, String text2) {
         if ((text1 == null || text1.trim().isEmpty()) && (text2 == null || text2.trim().isEmpty())) {
             return "Both JSON's are empty";
@@ -50,6 +80,13 @@ public class TextCompareDecorator extends JSONProcessorDecorator {
         }
     }
 
+    /**
+     * Identifies the differences between two JSON strings line by line.
+     *
+     * @param json1 the first JSON string
+     * @param json2 the second JSON string
+     * @return a list of strings describing the differences between the two JSON strings
+     */
     private List<String> getDifferences(String json1, String json2) {
         List<String> differences = new ArrayList<>();
         List<String> jsonLines1 = Arrays.asList(json1.split("\n"));
