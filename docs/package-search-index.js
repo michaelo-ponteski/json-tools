@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"pl.put.poznan.processor.app"},{"l":"pl.put.poznan.processor.logic"},{"l":"pl.put.poznan.processor.rest"}]
