@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Iterator;
 /**
  * Recursively excludes specified keys from the given JSON node.
- *
- * @param node the JSON node to process
  */
 public class KeyFilterDecorator extends JSONProcessorDecorator {
     /**
