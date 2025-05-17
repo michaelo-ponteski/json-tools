@@ -33,13 +33,13 @@ jobs:
         run: mvn javadoc:javadoc
 
       - name: Upload Javadoc
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: javadoc
           path: target/site/apidocs/
 
       - name: Upload Jar
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: app-jar
           path: target/*.jar
