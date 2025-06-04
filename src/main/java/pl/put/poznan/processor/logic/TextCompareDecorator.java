@@ -39,7 +39,8 @@ public class TextCompareDecorator extends JSONProcessorDecorator {
      */
     @Override
     public String processJSON(String json) {
-        return compareJSON(json, jsonToCompare);
+        String processedJson = wrapper.processJSON(json);
+        return compareJSON(processedJson, jsonToCompare);
     }
 
     /**
