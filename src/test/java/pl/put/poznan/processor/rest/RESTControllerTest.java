@@ -72,7 +72,7 @@ public class RESTControllerTest {
     void testPrettify() {
         // Arrange
         String input = "{\"name\":\"John\"}";
-        String expected = "{\r\n  \"name\" : \"John\"\r\n}";
+        String expected = "{" + System.lineSeparator() + "  \"name\" : \"John\"" + System.lineSeparator() + "}";
         when(mockPrettifyDecorator.processJSON(input)).thenReturn(expected);
 
         // Act
