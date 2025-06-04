@@ -87,6 +87,19 @@ public class RESTController {
         JSONProcessor processor = new TextCompareDecorator(new BasicJSONProcessor(), json2);
         return processor.processJSON(json1);
     }
+
+    /**
+     * Converts a JSON array of objects to CSV format.
+     *
+     * @param json the JSON array to convert
+     * @return CSV representation of the JSON array
+     */
+    @PostMapping(value = "/to-csv", produces = MediaType.TEXT_PLAIN_VALUE)
+    public String convertToCSV(@RequestBody String json) {
+        logger.debug("Converting JSON to CSV: {}", json);
+        JSONProcessor processor = new CSVConverterDecorator(new BasicJSONProcessor());
+        return processor.processJSON(json);
+    }
 }
 
 
